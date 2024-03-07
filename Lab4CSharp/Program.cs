@@ -2,108 +2,223 @@ using System;
 
 namespace Lab4CSharp
 {
-    class Program
+    class MainClass
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            // Створення об'єкта вектора без параметрів
-            VectorByte vector1 = new VectorByte();
-            vector1.Input(); // Введення елементів вектора з клавіатури
-            vector1.Output(); // Виведення елементів вектора на екран
+            Console.WriteLine("Оберiть завдання : ");
+            int choice = int.Parse(Console.ReadLine());
 
-            // Створення об'єкта вектора з заданим розміром та початковим значенням
-            VectorByte vector2 = new VectorByte(5, 10); // Розмір - 5, Початкове значення - 10
-            vector2.Output();
+            switch (choice) {
+                case 1:
+                    // Створення точки за допомогою конструктора без параметрів
+                    Point point1 = new Point();
+                    point1.Print();
 
-            // Приклади перегрузки операторів
-            VectorByte vector3 = vector1 + vector2; // Додавання двох векторів
-            vector3.Output();
+                    // Створення точки за допомогою конструктора з параметрами
+                    Point point2 = new Point(3, 4, 5);
+                    point2.Print();
 
-            VectorByte vector4 = vector1 + 5; // Додавання скаляру до вектора
-            vector4.Output();
+                    // Зміна координат точки
+                    point2.Move(1, -1);
+                    point2.Print();
 
-            VectorByte vector5 = vector1 - vector2; // Віднімання двох векторів
-            vector5.Output();
+                    // Визначення відстані від точки до початку координат
+                    double distance = point2.DistanceToOrigin();
+                    Console.WriteLine($"Відстань до початку координат: {distance}");
 
-            VectorByte vector6 = vector1 - 5; // Віднімання скаляру від вектора
-            vector6.Output();
+                    // Використання властивостей для отримання значень координат і кольору
+                    Console.WriteLine($"Координата X: {point2.X}, Координата Y: {point2.Y}, Колір: {point2.Color}");
 
-            VectorByte vector7 = vector1 * vector2; // Множення двох векторів
-            vector7.Output();
+                    // Перегрузка оператора ++
+                    ++point2;
+                    point2.Print();
 
-            VectorByte vector8 = vector1 * 5; // Множення вектора на скаляр
-            vector8.Output();
+                    // Перегрузка оператора --
+                    --point2;
+                    point2.Print();
 
-            VectorByte vector9 = vector1 / vector2; // Ділення одного вектора на інший
-            vector9.Output();
+                    // Перевірка на рівність координат
+                    Console.WriteLine(point2 ? "Координати рівні" : "Координати не рівні");
 
-            VectorByte vector10 = vector1 / 5; // Ділення вектора на скаляр
-            vector10.Output();
+                    // Використання індексатора
+                    Console.WriteLine($"Значення за індексом 0: {point2[0]}");
 
-            VectorByte vector11 = vector1 % vector2; // Остача від ділення одного вектора на інший
-            vector11.Output();
+                    // Перевантаження явного перетворення в рядок
+                    string pointString = (string)point2;
+                    Console.WriteLine($"Point2 у вигляді рядка: {pointString}");
 
-            VectorByte vector12 = vector1 % 5; // Остача від ділення вектора на скаляр
-            vector12.Output();
+                    // Перевантаження явного перетворення з рядка в об'єкт Point
+                    string pointStringInput = "7,8,9";
+                    Point pointFromString = (Point)pointStringInput;
+                    pointFromString.Print();
 
-            VectorByte vector13 = vector1 | vector2; // Побітове додавання двох векторів
-            vector13.Output();
+                    // Використання оператора +
+                    Point point3 = new Point(1, 1, 1);
+                    point3 = point3 + 2;
+                    point3.Print();
+                    break;
+                case 2:
+                    // Створення об'єктів класу VectorByte
+                    VectorByte vector1 = new VectorByte(5);
+                    VectorByte vector2 = new VectorByte(5, 10);
+                    VectorByte vector3 = new VectorByte(5, 20);
 
-            VectorByte vector14 = vector1 | 5; // Побітове додавання скаляру до вектора
-            vector14.Output();
+                    // Приклад використання методів
+                    vector1.Input();
+                    Console.WriteLine("Vector 1:");
+                    vector1.Output();
 
-            VectorByte vector15 = vector1 ^ vector2; // Побітове XOR двох векторів
-            vector15.Output();
+                    Console.WriteLine("\nVector 2:");
+                    vector2.Output();
 
-            VectorByte vector16 = vector1 ^ 5; // Побітове XOR вектора та скаляру
-            vector16.Output();
+                    // Приклад використання операторів
+                    VectorByte sum = vector1 + vector2;
+                    Console.WriteLine("\nSum of Vector 1 and Vector 2:");
+                    sum.Output();
 
-            VectorByte vector17 = vector1 & vector2; // Побітове AND двох векторів
-            vector17.Output();
+                    VectorByte difference = vector2 - vector3;
+                    Console.WriteLine("\nDifference of Vector 2 and Vector 3:");
+                    difference.Output();
 
-            VectorByte vector18 = vector1 & 5; // Побітове AND вектора та скаляру
-            vector18.Output();
+                    VectorByte product = vector1 * vector2;
+                    Console.WriteLine("\nProduct of Vector 1 and Vector 2:");
+                    product.Output();
 
-            VectorByte vector19 = vector1 >> 2; // Побітовий зсув вправо на 2 позиції
-            vector19.Output();
+                    VectorByte quotient = vector3 / vector2;
+                    Console.WriteLine("\nQuotient of Vector 3 and Vector 2:");
+                    quotient.Output();
 
-            VectorByte vector20 = vector1 >> vector2; // Побітовий зсув вправо відносно другого вектора
-            vector20.Output();
+                    VectorByte remainder = vector3 % vector2;
+                    Console.WriteLine("\nRemainder of Vector 3 and Vector 2:");
+                    remainder.Output();
 
-            VectorByte vector21 = vector1 << 2; // Побітовий зсув вліво на 2 позиції
-            vector21.Output();
+                    if (vector1 == vector2)
+                        Console.WriteLine("\nVector 1 and Vector 2 are equal.");
+                    else
+                        Console.WriteLine("\nVector 1 and Vector 2 are not equal.");
 
-            VectorByte vector22 = vector1 << vector2; // Побітовий зсув вліво відносно другого вектора
-            vector22.Output();
+                    if (vector1 != vector2)
+                        Console.WriteLine("Vector 1 and Vector 2 are not equal.");
+                    else
+                        Console.WriteLine("Vector 1 and Vector 2 are equal.");
 
-            // Перевірка умов порівняння
-            if (vector1 == vector2)
-                Console.WriteLine("Вектори рівні");
-            else
-                Console.WriteLine("Вектори не рівні");
+                    if (vector1 > vector2)
+                        Console.WriteLine("Vector 1 is greater than Vector 2.");
+                    else
+                        Console.WriteLine("Vector 1 is not greater than Vector 2.");
 
-            if (vector1 > vector2)
-                Console.WriteLine("Перший вектор більший за другий");
-            else
-                Console.WriteLine("Перший вектор не більший за другий");
+                    if (vector1 >= vector2)
+                        Console.WriteLine("Vector 1 is greater than or equal to Vector 2.");
+                    else
+                        Console.WriteLine("Vector 1 is not greater than or equal to Vector 2.");
 
-            if (vector1 >= vector2)
-                Console.WriteLine("Перший вектор більший або рівний другому");
-            else
-                Console.WriteLine("Перший вектор не більший або рівний другому");
+                    if (vector1 < vector2)
+                        Console.WriteLine("Vector 1 is less than Vector 2.");
+                    else
+                        Console.WriteLine("Vector 1 is not less than Vector 2.");
 
-            if (vector1 < vector2)
-                Console.WriteLine("Перший вектор менший за другий");
-            else
-                Console.WriteLine("Перший вектор не менший за другий");
+                    if (vector1 <= vector2)
+                        Console.WriteLine("Vector 1 is less than or equal to Vector 2.");
+                    else
+                        Console.WriteLine("Vector 1 is not less than or equal to Vector 2.");
 
-            if (vector1 <= vector2)
-                Console.WriteLine("Перший вектор менший або рівний другому");
-            else
-                Console.WriteLine("Перший вектор не менший або рівний другому");
+                    // Побітові бінарні операції
+                    VectorByte bitwiseOr = vector1 | vector2;
+                    Console.WriteLine("\nBitwise OR of Vector 1 and Vector 2:");
+                    bitwiseOr.Output();
 
-            // Зупинка консолі до натискання клавіші
-            Console.ReadKey();
-        }
+                    VectorByte bitwiseXor = vector1 ^ vector2;
+                    Console.WriteLine("\nBitwise XOR of Vector 1 and Vector 2:");
+                    bitwiseXor.Output();
+
+                    VectorByte bitwiseAnd = vector1 & vector2;
+                    Console.WriteLine("\nBitwise AND of Vector 1 and Vector 2:");
+                    bitwiseAnd.Output();
+
+                    VectorByte rightShift = vector1 >> 2;
+                    Console.WriteLine("\nRight Shift of Vector 1:");
+                    rightShift.Output();
+
+                    VectorByte leftShift = vector1 << 2;
+                    Console.WriteLine("\nLeft Shift of Vector 1:");
+                    leftShift.Output();
+                    break;
+                case 3:
+                    // Створення матриць
+                    MatrixByte matrix1 = new MatrixByte(3, 3);
+                    MatrixByte matrix2 = new MatrixByte(3, 3, 5);
+
+                    // Введення значень для першої матриці
+                    Console.WriteLine("Enter values for matrix 1:");
+                    matrix1.Input();
+
+                    // Виведення першої матриці
+                    Console.WriteLine("Matrix 1:");
+                    matrix1.Output();
+
+                    // Виведення другої матриці
+                    Console.WriteLine("Matrix 2:");
+                    matrix2.Output();
+
+                    // Використання операторів
+                    MatrixByte sum1 = matrix1 + matrix2;
+                    MatrixByte difference1 = matrix1 - matrix2;
+                    MatrixByte product1 = matrix1 * matrix2;
+                    MatrixByte division = matrix1 / matrix2;
+                    MatrixByte modulus = matrix1 % matrix2;
+                    MatrixByte incrementedMatrix = ++matrix1;
+                    MatrixByte decrementedMatrix = --matrix2;
+
+                    // Виведення результатів операцій
+                    Console.WriteLine("Sum of matrices:");
+                    sum1.Output();
+
+                    Console.WriteLine("Difference of matrices:");
+                    difference1.Output();
+
+                    Console.WriteLine("Product of matrices:");
+                    product1.Output();
+
+                    Console.WriteLine("Division of matrices:");
+                    division.Output();
+
+                    Console.WriteLine("Modulus of matrices:");
+                    modulus.Output();
+
+                    Console.WriteLine("Incremented matrix 1:");
+                    incrementedMatrix.Output();
+
+                    Console.WriteLine("Decremented matrix 2:");
+                    decrementedMatrix.Output();
+
+                    // Перевірка на рівність матриць
+                    if (matrix1 == matrix2)
+                    {
+                        Console.WriteLine("Matrix 1 is equal to matrix 2.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Matrix 1 is not equal to matrix 2.");
+                    }
+
+                    // Перевірка на більше або менше
+                    if (matrix1 > matrix2)
+                    {
+                        Console.WriteLine("Matrix 1 is greater than matrix 2.");
+                    }
+                    else if (matrix1 < matrix2)
+                    {
+                        Console.WriteLine("Matrix 1 is less than matrix 2.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Matrix 1 is equal to matrix 2.");
+                    }
+                    break;
+                }
+
+            }
+            
     }
 }

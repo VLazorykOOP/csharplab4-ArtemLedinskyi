@@ -117,6 +117,7 @@ public int this[int index]
                     case 1: y = value;
                         break;
                     case 2: color = value;
+                        break;
                         default: throw new ArgumentOutOfRangeException("Index out of range.");
 
                 }

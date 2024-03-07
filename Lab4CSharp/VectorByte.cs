@@ -39,15 +39,15 @@ public VectorByte(uint size, byte init)
         }
 ~VectorByte()
         {
-            console.WriteLine("Конструктор було викликано.");
+            Console.WriteLine("Конструктор було викликано.");
         }
 
 
  public void Input()
         {
             for (int i = 0; i < n; i++) {
-                console.WriteLine("Введiть число: ");
-                BArray[i] = byte.Parse(console.ReadLine());
+                Console.WriteLine("Введiть число: ");
+                BArray[i] = byte.Parse(Console.ReadLine());
                     }
         }
     
@@ -56,7 +56,7 @@ public void Output()
         {
             for(int i = 0; i < n; i++)
             {
-                console.WriteLine($"{BArray[i]}");
+                Console.WriteLine($"{BArray[i]}");
             }
         }
 
@@ -115,17 +115,17 @@ public void SetValue(byte value)
 
         public static VectorByte operator ++(VectorByte vb)
         {
-            for(int i = 0; i < n; i++)
+            for(int i = 0; i < vb.n; i++)
             {
-                ++vb.BArray[n];
+                ++vb.BArray[vb.n];
             }
             return vb;
         }
 public static VectorByte operator --(VectorByte vb)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < vb.n; i++)
             {
-                --vb.BArray[n];
+                --vb.BArray[vb.n];
             }
             return vb;
         }
@@ -136,17 +136,19 @@ public static bool operator true(VectorByte vb)
             {
                 return false;
             }
-            for(int i = 0; i < vb.n; i++)
+
+            for (int i = 0; i < vb.n; i++)
             {
                 if (vb.BArray[i] == 0)
                 {
                     return false;
                 }
-                return true;
             }
+
+            return true; 
         }
 
-public static bool operator false(VectorByte vb)
+        public static bool operator false(VectorByte vb)
         {
             if (vb.Size == 0)
             {
@@ -361,7 +363,7 @@ public static VectorByte operator >>(VectorByte v1, int shift)
             return result;
         }
 
- public static VectorByte operator >>(VectorByte v1, VectorByte v2)
+ /*public static VectorByte operator >>(VectorByte v1, VectorByte v2)
         {
             if (v1.Size != v2.Size)
                 throw new ArgumentException("Vectors must have the same size");
@@ -370,7 +372,7 @@ public static VectorByte operator >>(VectorByte v1, int shift)
             for (int i = 0; i < v1.n; i++)
                 result[i] = (byte)(v1[i] >> v2[i]);
             return result;
-        }
+        }*/
 
         public static VectorByte operator <<(VectorByte v1, int shift)
         {
@@ -380,7 +382,7 @@ public static VectorByte operator >>(VectorByte v1, int shift)
             return result;
         }
 
-public static VectorByte operator <<(VectorByte v1, VectorByte v2)
+/*public static VectorByte operator <<(VectorByte v1, VectorByte v2)
         {
             if (v1.Size != v2.Size)
                 throw new ArgumentException("Vectors must have the same size");
@@ -389,7 +391,7 @@ public static VectorByte operator <<(VectorByte v1, VectorByte v2)
             for (int i = 0; i < v1.n; i++)
                 result[i] = (byte)(v1[i] << v2[i]);
             return result;
-        }
+        }*/
 
         // Операції порівняння
         public static bool operator ==(VectorByte v1, VectorByte v2)
